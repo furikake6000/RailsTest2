@@ -205,23 +205,23 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  byebug (= 3.4.0)
-  coffee-rails (= 4.1.0)
-  guard-minitest (= 2.3.1)
-  jbuilder (= 2.2.3)
-  jquery-rails (= 4.0.3)
-  mini_backtrace (= 0.1.3)
-  minitest-reporters (= 1.0.5)
-  pg (= 0.17.1)
-  rails (= 4.2.2)
-  rails_12factor (= 0.0.2)
-  sass-rails (= 5.0.2)
-  sdoc (= 0.4.0)
-  spring (= 1.1.3)
-  sqlite3 (= 1.3.9)
-  turbolinks (= 2.3.0)
-  uglifier (= 2.5.3)
-  web-console (= 2.0.0.beta3)
+  byebug
+  coffee-rails
+  guard-minitest
+  jbuilder
+  jquery-rails
+  mini_backtrace
+  minitest-reporters
+  pg
+  rails
+  rails_12factor
+  sass-rails
+  sdoc
+  spring
+  sqlite3
+  turbolinks
+  uglifier
+  web-console
 
 BUNDLED WITH
    1.16.0.pre.3
