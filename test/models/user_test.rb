@@ -9,13 +9,23 @@ class UserTest < ActiveSupport::TestCase
       assert @user.valid?
   end
 
-  test "vaildtest:name" do
+  test "vaildtest:nameblank" do
     @user.name = ""
     assert_not @user.valid?
   end
 
-  test "vaildtest:email" do
+  test "vaildtest:emailblank" do
     @user.email = ""
+    assert_not @user.valid?
+  end
+
+  test "vaildtest:nametoolong" do
+    @user.name = "a" * 260
+    assert_not @user.valid?
+  end
+
+  test "vaildtest:emailtoolong" do
+    @user.email = "a" * 244 + "@example.com"
     assert_not @user.valid?
   end
 end
