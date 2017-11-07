@@ -5,12 +5,17 @@ class UserTest < ActiveSupport::TestCase
     @user = User.new(name: "Example User", email: "user@example.com")
   end
 
-  test "should be valid" do
+  test "vaildtest" do
       assert @user.valid?
   end
 
-  test "name should be present" do
-    @user.name = "     "
+  test "vaildtest:name" do
+    @user.name = ""
+    assert_not @user.valid?
+  end
+
+  test "vaildtest:email" do
+    @user.email = ""
     assert_not @user.valid?
   end
 end
