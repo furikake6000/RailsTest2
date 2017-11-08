@@ -12,9 +12,14 @@ class User < ApplicationRecord
         format: { with: VALID_EMAIL_REGEX },
         uniqueness: { case_sensitive: false }
         )
+    validates(:password,
+        presence:true,
+        length: {mininmum:6})
 
     before_save{
         #小文字に
         self.email = self.email.downcase
     }
+
+    has_secure_password
 end
