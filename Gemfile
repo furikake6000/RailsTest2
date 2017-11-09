@@ -8,7 +8,6 @@ end
 gem 'rails', '~> 5.1.4'
 gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
 gem 'bootstrap-sass'
-gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
@@ -41,6 +40,7 @@ end
 group :production do
   gem 'pg', '0.20.0'
   gem 'rails_12factor'
+  gem 'puma', '~> 3.7'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
