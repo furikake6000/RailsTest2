@@ -7,6 +7,7 @@ end
 
 gem 'rails', '~> 5.1.4'
 gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
+gem 'pkg-config', '~> 1.1'
 gem 'bootstrap-sass'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
