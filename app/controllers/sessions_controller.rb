@@ -7,7 +7,13 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
         #ログイン成功
         log_in(user)
-        remember(user)
+        if params[:session][:remember_me] == '1'
+          #cookieで記憶
+          remember(user)
+        else
+          #cookieで記憶しないし、もししてたら消去する
+          forget(user)
+        end
         redirect_to(user)
     else
         #ログインしっぱい
