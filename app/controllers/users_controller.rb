@@ -30,6 +30,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(user_params())
       #更新に成功したら
       flash[:success] = "Successful updated!"
+      redirect_to(@user)
     else
       #更新に失敗したら
       render 'edit'
