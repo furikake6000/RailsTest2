@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+  #更新ページと更新はログインしていないとできない
+  before_action :logged_in_user, only: [:edit, :update]
+  #正しいユーザでログインしていないとできない
+  before_action :correct_user, only: [:edit, :update]
+
   def show
     @user = User.find(params[:id])
   end
@@ -45,5 +50,23 @@ class UsersController < ApplicationController
             :email, 
             :password, 
             :password_confirmation)
+    end
+
+    #ログイン済みユーザかどうか確認する
+    def logged_in_user()
+      unless logged_in?()
+        #ログインしていなければログインページにリダイレクト
+        flash[:danger] = "Please log in."
+        redirect_to(login_url)
+      end
+    end
+
+    #正しいユーザかどうか確認する
+    def correct_user()
+      @user = User.find(params[:id])
+      unless @user == current_user()
+        #正しいユーザでなければトップページにリダイレクト
+        redirect_to(root_url)
+      end
     end
 end
