@@ -16,7 +16,8 @@ class User < ApplicationRecord
         )
     validates(:password,
         presence:true,
-        length: {minimum:6})
+        length: {minimum:6}, 
+        allow_nil:true)
 
     before_save{
         #小文字に
