@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
-  #更新ページと更新はログインしていないとできない
-  before_action :logged_in_user, only: [:edit, :update]
+  #更新ページと更新、ユーザ一覧の閲覧はログインしていないとできない
+  before_action :logged_in_user, only: [:edit, :update, :index]
   #正しいユーザでログインしていないとできない
   before_action :correct_user, only: [:edit, :update]
+
+  def index
+    @users = User.all
+  end
 
   def show
     @user = User.find(params[:id])
