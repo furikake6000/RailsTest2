@@ -16,10 +16,11 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_template 'users/edit'
   end
 
-  test "successful edit" do
-    log_in_as(@user)
+  test "successful edit with friendly fowarding" do
     get edit_user_path(@user)
-    assert_template 'users/edit'
+    log_in_as(@user)
+    #編集画面に行こうとしてからログインするとプロフィールページではなく編集画面にリダイレクトしてくれる
+    assert_redirected_to(edit_user_path(@user))
     name  = "Foo Bar"
     email = "foo@bar.com"
     patch user_path(@user), params: { user: { name:  name,
