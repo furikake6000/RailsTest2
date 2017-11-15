@@ -51,4 +51,17 @@ module SessionsHelper
         cookies.permanent.signed[:user_id] = user.id
         cookies.permanent[:remember_token] = user.remember_token
     end
+
+    #アクセスしようとしたURLを覚えておく
+    def store_location()
+        #get命令だったら取得
+        session[:fowarding_url] = request.url if request.get?()
+    end
+    
+    #記憶していたリンク先URLを呼び出し
+    def redirect_back_or(defaultpath)
+        redirect_to(session[:fowarding_url] || defaultpath)
+        session.delete(:fowarding_url)
+    end
+
 end
