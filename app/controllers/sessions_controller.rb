@@ -14,7 +14,8 @@ class SessionsController < ApplicationController
           #cookieで記憶しないし、もししてたら消去する
           forget(user)
         end
-        redirect_to(user)
+        #既にリンク先が保存されていればそこに飛ぶ　そうでなければプロフページに飛ぶ
+        redirect_back_or(user)
     else
         #ログインしっぱい
         if user
