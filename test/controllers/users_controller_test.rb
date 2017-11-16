@@ -58,8 +58,8 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to root_url
   end
 
-  test "cant change admin attribute by directly access"
-    log_in_as(@other_user)
+  test "cant change admin attribute by directly access" do
+    log_in_as @other_user
     assert_not @other_user.admin?
     patch :update, params:{
       id: @other_user,
