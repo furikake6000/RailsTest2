@@ -17,4 +17,7 @@ Rails.application.routes.draw do
 
   #UserをRestfulなりソースに
   resources :users
+
+  #AccountActivationはeditのみ可能
+  resources :account_activations, only: [:edit]
 end
