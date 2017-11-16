@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  #ユーザの削除は管理者じゃないとできない
+  before_action :admin_user, only: :destroy
   #更新ページと更新、ユーザ一覧の閲覧はログインしていないとできない
   before_action :logged_in_user, only: [:edit, :update, :index]
   #正しいユーザでログインしていないとできない
@@ -46,6 +48,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    User.find(params[:id]).destroy()
+    flash[:success] = "User deleted."
+    redirect_to(users_url)
+  end
+
   #ローカルなメソッド
   private
     def user_params()
@@ -74,5 +82,10 @@ class UsersController < ApplicationController
       
       #正しいユーザでなければトップページにリダイレクト
       redirect_to(root_url) unless current_user?(@user)
+    end
+
+    #管理者かどうか確認する
+    def admin_user()
+      redirect_to(root_url) unless current_user.admin?
     end
 end
