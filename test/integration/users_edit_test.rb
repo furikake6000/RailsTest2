@@ -32,5 +32,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     @user.reload
     assert_equal name,  @user.name
     assert_equal email, @user.email
+    #リダイレクト先URLがもうリセットされているか
+    assert_nil session[:fowarding_url]
   end
 end

@@ -42,4 +42,34 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to(login_url)
   end
 
+  test "should redirect destroy when not logged in" do
+    assert_no_difference 'User.count' do
+      delete :destroy, params: {id: @user}
+    end
+    assert_redirected_to root_url
+  end
+
+  test "should redirect destroy when logged in as a non-admin" do
+    #other_userは管理者ではない（から削除できない）
+    log_in_as(@other_user)
+    assert_no_difference 'User.count' do
+      delete :destroy, params: {id: @user}
+    end
+    assert_redirected_to root_url
+  end
+
+  test "cant change admin attribute by directly access"
+    log_in_as(@other_user)
+    assert_not @other_user.admin?
+    patch :update, params:{
+      id: @other_user,
+      user: {
+        password: "",
+        password_confirmation: "",
+        admin: true
+      }
+    }
+    #adminの変更は不可
+    assert_not @other_user.admin?
+  end
 end
