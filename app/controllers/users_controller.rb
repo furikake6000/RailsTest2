@@ -86,6 +86,7 @@ class UsersController < ApplicationController
 
     #管理者かどうか確認する
     def admin_user()
-      redirect_to(root_url) unless current_user.admin?
+      #管理者でないかログインしてなければトップページにリダイレクト
+      redirect_to(root_url) unless logged_in? && current_user.admin?
     end
 end
