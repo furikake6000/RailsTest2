@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-print("Example Userを作成...")
+print("Example Userを作成...\n")
 User.create!(
   name: "Example User", 
   email: "example@railstutorial.org",
@@ -23,4 +23,8 @@ print("99人のランダムなユーザを作成...")
     email: email,
     password: password,
     password_confirmation: password)
+  if(n % 9 == 0)
+    print("\#")
+  end
 end
+print("完了\n")
