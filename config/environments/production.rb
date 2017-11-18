@@ -62,6 +62,21 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "RailsTest2_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
+  #メール送信に関する設定
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  host = 'grim-demon-71620.herokuapp.com'
+  config.action_mailer.default_url_options = { host: host }
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.sendgrid.net',
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => ENV['SENDGRID_USERNAME'],  #※わざと実値を入れていない
+    :password       => ENV['SENDGRID_PASSWORD'],  #※わざと実値を入れていない
+    :domain         => 'heroku.com',
+    :enable_starttls_auto => true
+  }
+
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
