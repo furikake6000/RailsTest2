@@ -42,13 +42,13 @@ class User < ApplicationRecord
         update_attribute(:remember_digest, User.digest(self.remember_token))
     end
 
-    #リメンバトークンの認証
-    def authenticated?(remember_token)
-        if remember_digest.nil?
-            return false
-        end
+    #トークンの認証
+    def authenticated?(attribute, token)
+        digest = send("#{attribute}_digest")
+        #digestがnilだったらそもそもfalseを返す
+        return false if digest.nil?
         #is_password?()を使うとソルトを含めて認証してくれる
-        BCrypt::Password.new(remember_digest).is_password?(remember_token)
+        BCrypt::Password.new(digest).is_password?(token)
     end
 
     #リメンバトークンを削除する
