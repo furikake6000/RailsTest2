@@ -22,9 +22,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params())
     if @user.save()
       #新規登録に成功したら
-      log_in(@user)
-      flash[:success] = "Welcome to the Sample App!"
-      redirect_to(user_url(@user))
+      UserMailer.account_activation(@user).deliver_now()
+      flash[:info] = "Please check your email to activate your account!"
+      redirect_to(root_url)
     else
       #新規登録に失敗したら
       #ページ描画し直し（欄を全て空白に）
