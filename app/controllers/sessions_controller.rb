@@ -1,10 +1,12 @@
 class SessionsController < ApplicationController
   def new()
+    #自動生成されるため特に挙動はない
   end
 
   def create()
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
+      if user.activated?()
         #ログイン成功
         log_in(user)
         if params[:session][:remember_me] == '1'
@@ -16,6 +18,11 @@ class SessionsController < ApplicationController
         end
         #既にリンク先が保存されていればそこに飛ぶ　そうでなければプロフページに飛ぶ
         redirect_back_or(user)
+      else
+        #ログインしっぱい（まだ認証されていない）
+        flash[:warning] = "Account not activated.\nCheck your email for the activation link."
+        redirect_to(root_url)
+      end
     else
         #ログインしっぱい
         if user
