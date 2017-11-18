@@ -7,12 +7,14 @@ class AccountActivationsController < ApplicationController
     if !user
       flash[:danger] = "We cannot find such user."
       redirect_to(root_url)
+      return
     end
 
     #既に認証されていたら
     if user.activated?()
       flash[:danger] = "This user has already activated."
       redirect_to(root_url)
+      return
     end
 
     #URLのid(最後につくハッシュ化文字列)とactivation_digestを認証
