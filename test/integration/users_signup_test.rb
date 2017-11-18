@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UsersSignupTest < ActionDispatch::IntegrationTest
     def setup
-        ActionMailer::Base.deliberies.clear
+        ActionMailer::Base.deliveries.clear
     end
 
     test "invalid signup information" do
@@ -31,16 +31,14 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                 email: "user@example.com",
                 password: "password",
                 password_confirmation: "password" } }
-
-            follow_redirect!
         end
 
-        assert_equal(Action::Base.deliberies.size, 1)
+        assert_equal 1, ActionMailer::Base.deliveries.size
         user = assigns(:user)
-        assert_not(user.activated?())
+        assert_not user.activated?
 
         #activated前にログインしてみる
-        log_in_as(user)
+        log_in_as user
         assert_not(is_logged_in?())
         # 有効化トークンが不正な場合
         get edit_account_activation_path("invalid token", email: user.email)
