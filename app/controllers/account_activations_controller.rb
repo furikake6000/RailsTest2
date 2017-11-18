@@ -20,8 +20,7 @@ class AccountActivationsController < ApplicationController
     #URLのid(最後につくハッシュ化文字列)とactivation_digestを認証
     if user.authenticated?(:activation, params[:id])
       #成功
-      user.update_attribute(:activated, true)
-      user.update_attribute(:activated_at, Time.zone.now)
+      user.activate
       log_in(user)
 
       flash[:success] = "Account activated"
