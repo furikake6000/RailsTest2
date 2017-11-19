@@ -3,7 +3,8 @@ require 'test_helper'
 class MicropostTest < ActiveSupport::TestCase
   def setup
     @user = users(:michael)
-    @micropost = Micropost.new(content: "Lorem ipsum", user_id: @user.id)
+    @micropost = @user.micropost.build(content: "Lorem ipsum")
+    #※buildメソッドはオブジェクトを生成するがデータベースに登録しない
   end
 
   test "should be valid" do
