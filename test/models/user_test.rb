@@ -73,4 +73,13 @@ class UserTest < ActiveSupport::TestCase
         #@user doesn't have remember_digest
         assert_not(@user.authenticated?(:remember, ''))
     end
+
+    test "associated microposts should be destroyed" do
+        @user.save
+        @user.microposts.create!(content: "Lorem Ipsum")
+        assert_difference 'Micropost.count', -1 do
+            #1ツイートのユーザを削除したら1ツイートも削除されるか
+            @user.destroy
+        end
+    end
 end
