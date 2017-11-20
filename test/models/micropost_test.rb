@@ -3,7 +3,7 @@ require 'test_helper'
 class MicropostTest < ActiveSupport::TestCase
   def setup
     @user = users(:michael)
-    @micropost = @user.micropost.build(content: "Lorem ipsum")
+    @micropost = @user.microposts.build(content: "Lorem ipsum")
     #※buildメソッドはオブジェクトを生成するがデータベースに登録しない
   end
 
