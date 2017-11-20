@@ -5,7 +5,6 @@ class User < ApplicationRecord
     before_save :downcase_email
     before_create :create_activation_digest
 
-
     has_secure_password
 
     VALID_EMAIL_REGEX = /\A[a-zA-Z0-9_\#!$%&`'*+\-{|}~^\/=?\.]+@[a-zA-Z0-9][a-zA-Z0-9\.-]+\z/
