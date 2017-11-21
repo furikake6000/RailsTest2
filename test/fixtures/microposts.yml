@@ -18,7 +18,7 @@ cat_video:
 most_recent:
   content: "Writing a short test"
   created_at: <%= Time.zone.now %>
-  user:michael
+  user: michael
 
 <% 30.times do |n| %>
 micropost_<%= n %>:
