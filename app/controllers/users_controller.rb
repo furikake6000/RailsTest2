@@ -65,18 +65,6 @@ class UsersController < ApplicationController
             :password_confirmation)
     end
 
-    #ログイン済みユーザかどうか確認する
-    def logged_in_user()
-      unless logged_in?()
-        #ログインしていなければログインページにリダイレクト
-
-        #リダイレクト先を保存
-        store_location()
-        flash[:danger] = "Please log in."
-        redirect_to(login_url)
-      end
-    end
-
     #正しいユーザかどうか確認する
     def correct_user()
       @user = User.find(params[:id])
