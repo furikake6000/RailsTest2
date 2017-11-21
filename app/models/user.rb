@@ -70,6 +70,11 @@ class User < ApplicationRecord
         UserMailer.account_activation(self).deliver_now
     end
 
+    #ポストの取得
+    def feed
+        Micropost.all()
+    end
+
     private
         def downcase_email
             self.email = email.downcase
