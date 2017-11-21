@@ -3,7 +3,7 @@ class MicropostsController < ApplicationController
 
   def create
     #paramsには新規micropostのデータが入っている
-    @micropost = current_user.micropost.build(micropost_params)
+    @micropost = current_user.microposts.build(micropost_params)
     if @micropost.save
 
     else
