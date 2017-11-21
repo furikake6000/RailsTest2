@@ -33,3 +33,14 @@ print("99人のランダムなユーザを作成...")
   end
 end
 print("完了\n")
+
+print("サンプルのマイクロポストを作成...")
+users = User.order(:created_at).take(6)
+50.times do |n|
+  content = Faker::Lorem.sentence(5)
+  users.each {|user| user.microposts.create!(content: content)}
+  if(n % 5 == 0)
+    print("\#")
+  end
+  print("完了\n")
+end

@@ -11,7 +11,7 @@ class AccountActivationsController < ApplicationController
     end
 
     #既に認証されていたら
-    if user.activated?()
+    if user.activated?
       flash[:danger] = "This user has already activated."
       redirect_to(root_url)
       return
