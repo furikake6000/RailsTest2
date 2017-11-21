@@ -78,4 +78,10 @@ class UsersController < ApplicationController
       #管理者でないかログインしてなければトップページにリダイレクト
       redirect_to(root_url) unless logged_in? && current_user.admin?
     end
+
+    #正しいユーザ、もしくは管理者ならばパス
+    def correct_user_or_admin()
+      @user = User.find(params[:id])
+      redirect_to(root_url) unless logged_in? && ( current_user.admin? || current_user?(@user) )
+    end
 end
