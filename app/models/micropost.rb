@@ -9,10 +9,10 @@ class Micropost < ApplicationRecord
 
   validates :user_id, presence:true
   validates :content, presence:true, length:{maximum: 140}
-  validate :pucture_size, 5.megabytes
+  validate :picture_size
 
   private
-    def picture_size(size)
-      errors.add(:picture, "File is too heavy!") if picture.size > size
+    def picture_size
+      errors.add(:picture, "File is too heavy!") if picture.size > 5.megabytes
     end
 end

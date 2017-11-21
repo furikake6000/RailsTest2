@@ -26,3 +26,6 @@
 
 #Ignore bundle gems
 /vendor/bundler/*
+
+#ignore uploaded images
+/public/uploads
