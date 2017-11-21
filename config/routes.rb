@@ -20,4 +20,7 @@ Rails.application.routes.draw do
 
   #AccountActivationはeditのみ可能
   resources :account_activations, only: [:edit]
+
+  #micropostはcreateとdeleteが可能
+  resources :microposts, only: [:create, :destroy]
 end
